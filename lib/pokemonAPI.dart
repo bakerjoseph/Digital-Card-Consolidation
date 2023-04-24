@@ -10,7 +10,7 @@ class PokeAPI {
     final set = await getRandomSet();
     // Get the id of the set and a random number within the bounds of 1 - total in the set
     return await apiConnection
-        .getCard("${set.id}-${1 + random.nextInt(set.total)}");
+        .getCard("${set.id}-${random.nextInt(set.total) + 1}");
   }
 
   Future<CardSet> getRandomSet() async {
