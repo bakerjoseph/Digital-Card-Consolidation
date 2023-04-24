@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, constraints) {
         return Scaffold(
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // SafeArea(
               //   child: NavigationRail(
@@ -54,11 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
               //     },
               //   ),
               // ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: LandingPage(),
-                ),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: LandingPage(),
               ),
             ],
           ),
@@ -73,16 +72,23 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displaySmall;
+
     return FutureBuilder(
       future: randomCard,
       builder: (context, AsyncSnapshot<PokemonCard> snapshot) {
         if (snapshot.hasData) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Today's Random Card"),
-              SingleCard(card: snapshot.data),
-            ],
+          return Center(
+            child: Column(
+              children: [
+                Text(
+                  "Today's Random Card",
+                  style: style,
+                ),
+                SingleCard(card: snapshot.data),
+              ],
+            ),
           );
         } else {
           return CircularProgressIndicator();
@@ -104,7 +110,7 @@ class SingleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(3),
         child: Image.network("${card?.images.small}"),
       ),
     );
