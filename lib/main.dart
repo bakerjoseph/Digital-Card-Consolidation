@@ -84,10 +84,13 @@ class LandingPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Today's Random Card",
+                  "Random Card",
                   style: style,
                 ),
                 SingleCard(card: snapshot.data),
+                // Refresh button to go here!
+                // Extra text to explain application
+                // Copyright info addition too
               ],
             ),
           );
